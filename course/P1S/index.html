@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh-tw">
+<!--<![endif]-->
+<head>
+<title>CodingBar</title>
+<meta name="description" content="Python 入門線上自學班：跟著每週進度，保證七週後能獨立開發小程式。第一堂課後五天內覺得不合適，保證全額退費！透過 CodingBar 智慧平台學習，不限時間、地點，又享有實體課程的高互動性！" />
+<meta name="keywords" content="自學,程式語言,Python,入門,線上課程,程式課程,學程式,coding 課程" />
+<meta name="copyright" content="瑞比智慧科技 Copyright &copy; All rights reserved">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- apple mobile web app capable -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-batr-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="no">
+<!-- 上面是必須 meta其他放後面 -->
+<link rel="shortcut icon" href="favicon.ico"/>
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TD36QVX');</script>
+<!-- End Google Tag Manager -->
+
+<!-- New Global site tag (gtag.js) - Google Ads: 784787163 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-784787163"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-784787163');
+  gtag('config', 'UA-129789023-1');
+</script>
+
+<!-- Facebook Pixel Code -->
+
+<script>
+  console.log("FB-Begin");
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '1950066075061967'); 
+fbq('track', 'PageView');
+  console.log("FB-End");
+</script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1950066075061967&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+<link rel="stylesheet" href="../../css/master.css" />
+<link rel="stylesheet" href="./css/master.css" />
+
+<script>
+function register() {
+  const data = {
+    email: document.getElementById("email").value,
+    course: 'Python 入門線上自學班',
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    purpose: document.getElementById("purpose").value,
+    option: document.getElementById("r1").checked ? 1 :
+            (document.getElementById("r2").checked ? 2 : 0),
+    cid: 'P1S03',
+    optionContent: "",
+    payLink: ""
+  };
+
+  if (data.option === 0) {
+    alert("忘記選擇方案了!");
+    return;
+  }
+
+  if (data.email.trim() === "") {
+    alert("忘記填寫帳號了!");
+    return;
+  }
+
+  const regex = /\S+@\S+\.\S+/;
+  const isEmailFormat = regex.test(data.email);
+  if( isEmailFormat === false ){
+      alert("Email 格式錯誤了!");
+      return;
+  }
+
+  if (data.name.trim() === "") {
+    alert("忘記填寫姓名了!");
+    return;
+  }
+
+  if (data.phone.trim() === "") {
+    alert("忘記填寫手機號碼了!");
+    return;
+  }
+
+  if (data.purpose.trim() === "") {
+    alert("忘記選擇學程式的目的了!");
+    return;
+  }
+
+  if (data.option === 1) {
+      data["optionContent"] = "45天輔導方案";
+      data["payLink"] = "https://p.ecpay.com.tw/5B977";
+  }
+
+  if (data.option === 2) {
+      data["optionContent"] = "強化激勵方案";
+      data["payLink"] = "https://p.ecpay.com.tw/0B6A8";
+  }
+
+  sendRegister(data);
+}
+
+function sendRegister(data) {
+  fetch('https://codingbar.net/service/course/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).catch(error => alert("報名失敗! 請聯繫客服人員!"))
+  .then(response => {
+    localStorage.setItem("codingbar_register", JSON.stringify(data));
+    document.location.href='./ok.html?name=' + encodeURIComponent(data.name) + "&option=" + data.option;
+  });
+}
+</script>
+
+<style>
+  .copyright {
+    text-align: center;
+    font-size: 10pt;
+  }
+</style>
+</head>
+<body class="drawer drawer--top">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD36QVX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="hid_over index about school">
+    <header class="drawer-navbar" role="banner">
+      <div class="drawer-container">
+        <div class="drawer-navbar-header">
+          <h1><a href="index.html" title="logo drawer-brand">CodingBar</a></h1>
+          <div class="scroll_show"><span>Python最新<br>
+            課程方案</span><a id="yt_5" href="javascript: void(0)" class="yellow_btn">立即報名</a></div>
+          <button type="button" class="drawer-toggle drawer-hamburger"> <span class="sr-only class">2019 國中小程式夏令營</span> <span class="drawer-hamburger-icon"></span> </button>
+        </div>
+          <nav class="drawer-nav" role="navigation">
+        <ul class="drawer-menu drawer-menu--right">  
+        <li><a href="../../class.html" class="drawer-menu-item">秋季常態課程</a></li>
+      <li class="drawer-dropdown"> <a class="drawer-menu-item" data-target="#" href="#" data-toggle="dropdown" role="button" > 2019 暑期營隊 <span class="drawer-caret"></span> </a>
+            <ul class="drawer-dropdown-menu">
+                <li><a class="drawer-dropdown-menu-item out" href="../../camp/index.html">2019 國中小程式夏令營 </a></li>
+                <li><a class="drawer-dropdown-menu-item out" href="../../camp/sh.html">2019 高中程式夏令營 </a></li>
+              </ul>
+          </li>
+        <li><a href="./index.html" class="drawer-menu-item active">社會人士課程</a></li>
+          <li><a href="../../about.html" class="drawer-menu-item">關於我們</a></li>
+          <li><a href="https://medium.com/codingbar" class="drawer-menu-item" target="_blank">專欄</a></li>
+          <li><a href="https://www.facebook.com/codingbar" class="drawer-menu-item fb" target="_blank"><img src="../../img/fb.svg" class="img fb"><i>粉絲頁</i></a></li>
+          <li><a href="https://app.codingbar.ai" class="drawer-menu-item yellow_btn">登入<i>Codingbar</i></a></li>
+        </ul>
+      </nav>
+      </div>
+    </header>
+  </div>
+
+<div class="wrapper-main">
+<div class="wrapper">
+  <section class="main-section">
+    <div class="container">
+      <h2 class="text-center">Python入門<br>線上自學班</h2>
+      <div class="top_title">
+        <p class="text-center">專為克服您的學習惰性，<br>所打造的創新線上學習！
+        <p class="text-center">學習 AI 時代最熱門的 Python，<br>成為職場上最搶手的跨領域人才！</p>
+        <div class="text-center"> <a id="yt_2" href="javascript: void(0)" class="yellow_btn z-index">我要報名</a> </div>
+      </div>
+      <div class="top_icon">
+        <div class="icon_box"><span><img src="img/icon1.png" class="img icon"></span>
+          <p class="text-center">第一單元上線後五天內，<br>不合適保證全額退費！</p>
+        </div>
+        <div class="icon_box"><span><img src="img/icon3.png" class="img icon"></span>
+          <p class="text-center">每週跟著進度，還有導師關心您，<br>學習不再是孤單一人！</p>
+        </div>
+        
+        <div class="icon_box"><span><img src="img/icon2.png" class="img icon"></span>
+          <p class="text-center">速學速用！讓電腦為您工作，<br>把時間浪費在更多美好的事物上！</p>
+        </div>
+
+      </div>
+      <img src="img/top_bg.png" class="img top_bg"> <img src="img/top_bg2.png" class="img top_bg2"> <img src="img/top_bg3.png" class="img top_bg3"> 
+       </span>
+	  </div>
+	  <span class="embed-vedio">
+        <iframe width="100%" height="auto" src="https://www.youtube.com/embed/odhd5IIKDzQ" frameborder="0" allowfullscreen="" title="rdlVBKKtznM"></iframe>
+    </span>
+  </section>
+  <section class="features-section—p1s">
+	  <img src="img/features_bg.png" class="img features_bg_p1s">
+    <div class="container">
+      <h3 class="title text-center">課程特色</h3>
+      <div class="features_main">
+        <div class="features_box">
+          <dl>
+            <dd>為程式學習打下基礎</dd>
+            <dt>CodingBar提供一個獨特的線上學習平台，不管是將來要學習CodingBar的進階課程，或自己摸索更多程式技巧，
+              您都能在這打下扎實的程式基礎概念。</dt>
+        　</dl>
+          <dl>
+            <dd>我們知道初學者的痛</dd>
+            <dt>顛覆您對寫程式很難、很無趣的想法！使用有趣的動畫影片，講解抽象的程式概念，再透過短短 3~5 分鐘的教學影片，讓您立刻動手練習，系統還會自動判斷對錯喔！</dt>
+          </dl>
+          <dl>
+            <dd>「強化激勵方案」鼓勵您學習</dd>
+            <dt>我們使盡渾身解數要幫您防懶！只要您在規定時間內完成所有課堂練習，我們退您學費！只要別人 40% 的學費又能盡快完成，真是超級優惠！</dt>
+          </dl>
+        </div>
+        <div class="features_box">
+          <dl>
+            <dd>跟著每週進度，克服自學的惰性</dd>
+            <dt>我們知道自學容易發懶，跟著我們一週一堂的進度，每週都有小進步，別擔心自學缺乏動力，老師會每週關心您的進度和學習狀況，不是讓你自立自強不管你！</dt>
+          </dl>
+          <dl>
+            <dd>我們要您學會而不只是「學過」！</dd>
+            <dt>一般線上課程只有一位老師照顧您大小事，如果您不問問題，老師也不知道您的狀況，只能「放生」您......我們則是一個專業團隊，還有系統平台協助您學習！第一堂課上線後五天內，若您覺得不合適，我們保證全額退費！</dt>
+          </dl>
+          <dl>
+            <dd>實用導向，立學立用</dd>
+            <dt>前四週讓您快速建立 Python 程式基礎，第五、六單元的專題實作，您將學會如何運用 Python 分析大量的資料，不但綜合應用前幾週的基礎，更能幫助您實際解決工作上的問題！</dt>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <img src="img/features_bg2.png" class="img features_bg2_p1s"> </section>
+  <section class="time-section">
+    <div class="container">
+      <h3 class="title text-center">課程時間</h3>
+      <p class="text-center time_words">每單元當日 10:00 開放當週線上課程</p>
+      <div class="date_main">
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>Sep</u><i>04</i></span>
+            <p><i>第一單元</i><span>程式基礎概念</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>Sep</u><i>11</i></span>
+            <p><i>第二單元</i><span>條件控制與 for 迴圈</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>Sep</u><i>18</i></span>
+            <p><i>第三單元</i><span>while 迴圈</span></p>
+            </a></li>
+        </ul>
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>Sep</u><i>25</i></span>
+            <p><i>第四單元</i><span>串列及函式</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate last_date"><u>Oct</u><i>02</i></span>
+            <p><i>第五單元</i><span>專題實作：文字檔案資料處理</span></p>
+            </a></li>
+          <!-- <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>七月</u><i>3</i></span>
+            <p><i>第六單元</i><span>專題實作：文字檔案資料處理</span></p>
+            </a></li> -->
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate last_date"><u>Oct</u><i>09</i></span>
+            <p><i>第六單元</i><span>專題實作：Excel檔案資料分析</span></p>
+            </a></li>  
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="go_here"></div>
+  <section class="cost-section">
+    <div class="container">
+      <h3 class="title text-center">課程方案與費用</h3>
+      <div class="class_main">
+        <div class="top_Program">
+          <div class="program_box">
+            <div class="box_content">
+              <p>基礎方案</p>
+              <h3 class="blue_font">45天輔導方案</h3>
+              <p>課程全部結束後，提供 45 天課後輔導。您可以在期限內，透過 CodingBar 平台與專業教師討論課程或練習的相關問題。</p>
+            </div>
+            <div class="box_content blue_bg">
+              <h4 class="bottom_font">優惠價 <i>$2,500</i></h4>
+              <a id="yt_1" href="https://app.codingbar.ai/register/course/adult/P1SB" target="_blank" class="yellow_btn">選擇此方案</a> </div>
+          </div>
+          <div class="program_box">
+            <div class="box_content">
+              <p>加強方案</p>
+              <h3 class="blue_font">強化激勵方案</h3>
+              <p>報名後繳費 $4,000元，只要在第六單元上線後的十天內，完成所有課堂練習
+                ，頒發激勵獎金 $3,000元，實際只要$1,000！防懶又享有 45 天課後輔導。</p>
+            </div>
+            <div class="box_content blue_bg">
+              <h4 class="bottom_font">實際只要 <i>$1,000</i></h4>
+              <a id="yt_2" href="https://app.codingbar.ai/register/course/adult/P1SS" target="_blank" class="yellow_btn">選擇此方案</a> </div>
+          </div>
+        </div>
+        
+        <div class="go_here"></div>
+      </div>
+    </div>
+  </section>
+  <section class="movie-section">
+
+    <div class="container">
+      <div class="notice_words">
+        <ul>
+          <li class="flex_style"><span class="line">課前準備</span>
+            <ol>
+              <li>只要準備一部能透過 Chrome 瀏覽器連上網的電腦</li>
+              <li>您不需要具備有其他程式語言的基礎，但需具備國中程度的基礎英文以及數學</li>
+              <li>放輕鬆，本課程就是希望在無負擔的狀態下，讓您快速建立程式語言的概念</li>
+            </ol>
+          </li>
+          <li class="flex_style"><span class="line">繳費方式</span>
+            <p>報名成功後，系統將發送電子郵件通知您繳費資訊，您可透過多元繳費機制繳費。若有任何問題，歡迎透過 LINE 搜尋 @codingbar 與我們聯絡。</p>
+          </li>
+        <!--  <li class="flex_style"><span class="line">下次開課</span>
+            <p>4/17 (三) ~ 5/29 (三) 共七週</p>
+          </li> -->
+          <li class="flex_style"><span class="line">注意事項</span>
+            <p>已繳費因故無法參加課程者，於第一堂課上線五日內提出申請，全額退費；之後則不退費。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img src="img/top_bg4.png" class="img top_bg4"> <img src="img/top_bg5.png" class="img top_bg5"> </section>
+</div></div>
+<section class="movie-section gray">
+  <div class="container">
+    <h3 class="title text-center">常見問題</h3>
+    <div class="qa_main">
+      <dl>
+        <dd>Q1：學習時如果遇到問題我如何得到協助？</dd>
+        <dt>你可以透過 CodingBar 系統直接提問，老師將在 24小時內回覆你的問題。你也可以在線上家教時間直接問老師，老師將立刻為你解答。</dt>
+      </dl>
+    　<dl>
+        <dd>Q2：你們跟一般線上課程的差別在哪?</dd>
+        <dt>最大的差別在於我們擁有獨創的 CodingBar 程式學習平台，老師可以遠端直接看到學員的程式碼，瞭解學員的學習狀況給予協助。同時我們也不斷優化我們的上課方式，讓大家可以享受到線上學習的彈性，又同時擁有實體學習的高互動性。</dt>
+      </dl>
+      <dl>
+        <dd>Q3：這門課上完之後，如果想進階學習，後續有什麼進階課程?</dd>
+        <dt>Python入門班是最基礎的課程，後續根據你不同的實務需要，你可以選擇：小資族的投資策略、找資料的省時必殺技、問卷調查的資料分析...等進階應用班，甚至還有 C++、Java 等不同程式語言課程讓你學習，將陸續推出，敬請期待。</dt>
+      </dl>
+      <dl>
+        <dd>Q4：線上課程可以看幾次？</dd>
+        <dt>線上影片自第一堂課開始，一年內可以無限多次觀看，實作練習則無限制。影片有時間限制的原因，是希望您一鼓作氣，盡快完成學習！</dt>
+      </dl>
+      <dl>
+        <dd>Q5：為什麼課程是一週一週上，又有45天輔導或加強方案的限制？</dd>
+        <dt>我們深知線上自學是很容易有惰性的，根據美國統計調查，線上課程完成率不到5% 。因此我們不希望你花了錢買了課程卻又沒學到東西，所以我們希望你照著我們進度，一週一週按步就班學習，盡快完成就可以盡快應用在生活上。</dt>
+      </dl>
+      <dl>
+        <dd>Q6：如果需要，我可以有一對一線上或實體輔導嗎？費用多少呢？</dd>
+        <dt>可以的，您可以加購一對一線上輔導課。時間由您跟老師預約，線上輔導每次至少30分鐘，地點在忠孝新生捷運站附近（忠孝東路三段96號3F），費用為每小時新台幣600元。你可以透過 Line@ 或 CodingBar 平台提早跟老師預約時間。</dt>
+      </dl>
+      <dl>
+        <dd>Q7：如果我對以上內容還有些問題，我該怎麼獲得協助？</dd>
+        <dt>如有任何問題或需要更多說明，歡迎透過Line與我們聯絡。<br>
+              <a href="https://line.me/R/ti/p/%40ply0218v"><img src="../../img/LINE@.png"></a></dt>
+      </dl>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <ul>
+      <li><img src="img/logo.png" class="img logo">
+        <p>瑞比智慧科技股份有限公司</p>
+      </li>
+      <li><span>公司地址</span>
+        <p>台北市忠孝東路三段96號3F</p>
+      </li>
+      <li><span>電子郵件</span>
+        <p>service<i>@</i>codingbar.ai</p>
+      </li>
+      <li><span>公司電話</span>
+        <p>(02)7717-9386</p>
+      </li>
+      <li><span>Line</span>
+        <p><i>@</i>codingbar</p>
+      </li>
+    </ul>
+  </div>
+  <div class="copyright">
+  Copyright &copy; 2019 airabbi  all rights reserved
+　<br>
+  </div>
+</footer>
+<script src="../../js/jquery-2.2.1.min.js"></script>
+<script src="../../js/iscroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.sticky.js"></script>
+<script src="../../js/drawer.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/wow.min.js"></script>
+<script type="text/javascript" src="../../js/tether.js"></script>
+<script src="../../js/select.js"></script>
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>CodingBar</title>
+<meta name="description" content="Python 入門線上自學班：跟著每週進度，保證七週後能獨立開發小程式。第一堂課後五天內覺得不合適，保證全額退費！透過 CodingBar 智慧平台學習，不限時間、地點，又享有實體課程的高互動性！" />
+<meta name="keywords" content="自學,程式語言,Python,入門,線上課程,程式課程,學程式,coding 課程" />
+<meta name="copyright" content="瑞比智慧科技 Copyright &copy; All rights reserved">
+<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="https://codingbar.net/service/course/email/stylesheet.css">
+<link href="https://fonts.googleapis.com/css?family=Charm|Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Charm|Noto+Sans+TC|Roboto" rel="stylesheet">
+    <style>
+        html, body {
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .container {
+            width:100%;
+            height: 690px;
+            background-color: #fed502;
+            display: grid;
+            grid-template-rows: 1fr 6fr 3fr;
+            margin: auto;
+            position: relative;
+
+        }
+
+        .codingbar-icon {
+            height: 50px;
+            float: right;
+            padding: 10px;
+        }
+
+        .chatbubble {
+            width: 85%;
+            height: 85%;
+            background-color: white;
+            border-radius: 20px;
+            margin:auto;
+        }
+
+        .chatbubble-triangle {
+            -webkit-clip-path: polygon(22% 32%, 76% 32%, 51% 89%);
+            clip-path: polygon(20% 32%, 74% 32%, 51% 102%);
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            position: absolute;
+            top: 57%;
+            left: 71%;
+
+        }
+        .message {
+            padding: 50px;
+            font-size: 26px;
+        }
+
+        .message .ms2, .message .ms1 {
+            margin-top: 8px;
+            font-family: 'Charm', cursive;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .link-block {
+            margin-left: 90px;
+            margin-top: -20px;
+        }
+        .link {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-family: 'Charm', cursive;
+            font-family: 'Roboto', sans-serif;
+        }
+        .link a {
+            text-decoration: none;
+            color: black;
+        }
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            margin-right: 19px;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .monster {
+            float: right;
+            position: absolute;
+            bottom: -20px;
+            left: 68%;
+        }
+
+        .the-table {
+            width: 100%;
+            height: 250px;
+            margin-top: 50px;
+            margin-left: 8%;
+            margin-right: 0%;
+            position: absolute;
+            bottom: -20px;
+        }
+        
+        .copyright {
+        text-align: center;
+        font-size: 10pt;
+        }
+
+    </style>
+
+    <script>
+
+        window.onload = function () {
+            var name = getQueryVariable("name");
+            var option = getQueryVariable("option");
+            if (name) {
+                document.getElementById("name").innerText = `${decodeURIComponent(name)} 您好：`;
+            }
+
+            if (option) {
+                const url = 'https://p.ecpay.com.tw/8F86F';
+                document.getElementById("content").innerHTML = `恭喜您完成報名 L1AS02 線上自學 Python入門，以下是課程繳費連結: ` +
+                    `<a href="${url}">${url}</a><br/>請於三個工作日內完成繳費，感謝您的參與，如有任何問題或建議，歡迎您透過Line@與我們反應與交流，謝謝！<div style="color: red;">(報名與繳費所填寫的Email請一致，以方便對帳)</div>`;
+            }
+        }
+
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+        }
+
+    </script>
+
+    <!-- New Global site tag (gtag.js) - Google Ads: 784787163 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-784787163"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-784787163');
+    </script>
+
+    <!-- Event snippet for L1A 購買 conversion page -->
+    <script>
+      gtag('event', 'conversion', {
+          'send_to': 'AW-784787163/n1uACOfU_5MBENvNm_YC',
+          'transaction_id': ''
+      });
+    </script>
+
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      console.log("FB-Begin");
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+     fbq('init', '1950066075061967'); 
+     fbq('track', 'PageView');
+     
+         fbq('track', 'Purchase', {value:'2500.00', currency:'TWD'});
+     
+      console.log("FB-End");
+    </script>
+    <noscript>
+     <img height="1" width="1" 
+    src="https://www.facebook.com/tr?id=1950066075061967&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <a href="https://codingbar.ai/course/P1S/"><img class="codingbar-icon" src="https://codingbar.net/service/course/email/img/codingbar.png"/></a>
+        </div>
+        <div class="conversation">
+            <div class="chatbubble">
+                <div class="message">
+                    <div class="ms1" id="name"></div>
+                    <div class="ms2" id="content">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="the-table">
+            <tr>
+                <td valign="center">
+                <div class="link">
+                    <a href="https://www.facebook.com/codingbar/"><img class="icon" src="https://codingbar.net/service/course/email/img/facebook.png"/></a>
+                    <a href="https://www.facebook.com/codingbar/">Coding Bar</a>
+                </div>
+
+                <div class="link">
+                    <a href="https://www.instagram.com/codingbar.ai/"><img class="icon" src="https://codingbar.net/service/course/email/img/ig.png"/></a>
+                    <a href="https://www.instagram.com/codingbar.ai/">codingbar.ai</a>
+                </div>
+
+                <div class="link">
+                   <a href="https://line.me/R/ti/p/%40ply0218v"><img class="icon" src="https://codingbar.net/service/course/email/img/line.png"/></a>
+                    <a href="https://line.me/R/ti/p/%40ply0218v">@codingbar</a>   
+                </div>
+                </td>
+                <td valign="bottom" alight="right">
+                    <a href="https://codingbar.ai/course/teens/"><img src="https://codingbar.net/service/course/email/img/monster.png"/></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="copyright">
+        Copyright &copy; 2019 airabbi  All rights reserved
+    </div>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh-tw">
+<!--<![endif]-->
+<head>
+<title>線上自學班 L1AS01</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="copyright" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- apple mobile web app capable -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-batr-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="no">
+<!-- 上面是必須 meta其他放後面 -->
+<title></title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="copyright" content="">
+<link rel="shortcut icon" href="favicon.ico"/>
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TD36QVX');</script>
+<!-- End Google Tag Manager -->
+
+
+<!-- Global site tag (gtag.js) - Google Ads: 784787163 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-784787163"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-784787163');
+  gtag('config', 'UA-129789023-1');
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+  console.log("FB-Begin");
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '1950066075061967'); 
+fbq('track', 'PageView');
+  console.log("FB-End");
+</script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1950066075061967&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+
+<link rel="stylesheet" href="../css/master.css" />
+
+
+  <script>
+      function register() {
+
+          const option1 = document.getElementById("r1") ? (document.getElementById("r1").checked ? 1:undefined):undefined;
+          const option2 = document.getElementById("r2") ? (document.getElementById("r2").checked ? 2:undefined):undefined;
+          const option = option1 ? option1:option2;
+
+          const data = {
+              email: document.getElementById("email").value,
+              course: 'L1AS01 線上自學 Python入門',
+              name: document.getElementById("name").value,
+              school: document.getElementById("school").value,
+              pemail: document.getElementById("pemail").value,
+              pname: document.getElementById("pname").value,
+              phone: document.getElementById("phone").value,
+              purpose: document.getElementById("purpose") ?document.getElementById("purpose").value:undefined,
+              option: option,
+              cid: 'L1AS01',
+          };
+
+          // if (data.option === 0) {
+          //     alert("忘記選擇方案了!");
+          //     return;
+          // }
+
+          if (data.email.trim() === "") {
+              alert("忘記填寫Email了!");
+              return;
+          }
+
+          const regex = /\S+@\S+\.\S+/;
+          const isEmailFormat = regex.test(data.email);
+          if( isEmailFormat === false ){
+              alert("Email 格式錯誤了!");
+              return;
+          }
+
+          if (data.name.trim() === "") {
+              alert("忘記填寫姓名了!");
+              return;
+          }
+
+          if (data.school.trim() === "") {
+              alert("忘記填寫就讀學校年級了!");
+              return;
+          }
+
+          if(regex.test(data.pemail) === false ){
+              alert("家長 Email 格式錯誤了!");
+              return;
+          }
+
+          if (data.pemail.trim() === "") {
+              alert("忘記填寫家長Email了!");
+              return;
+          }
+
+          if (data.pname.trim() === "") {
+              alert("忘記填寫家長姓名了!");
+              return;
+          }
+
+          if (data.phone.trim() === "") {
+              alert("忘記填寫手機號碼了!");
+              return;
+          }
+
+
+          sendRegister(data);
+      }
+
+      function sendRegister(data) {
+          fetch('https://codingbar.net/service/course/register', {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: new Headers({
+                  'Content-Type': 'application/json'
+              })
+          }).catch(error => alert("報名失敗! 請聯繫客服人員!"))
+              .then(response => {
+                  document.location.href='./L1AS01-ok.html?name=' + encodeURIComponent(data.name) + "&option=" + data.option;
+              });
+      }
+  </script>
+
+
+
+
+</head>
+<body class="drawer drawer--top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD36QVX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<header class="drawer-navbar" role="banner">
+  <div class="drawer-container">
+  <div class="drawer-navbar-header">
+    <h1><a href="javascript: void(0)" title="logo drawer-brand">CodingBar</a></h1>
+    <div class="scroll_show"><span>L1AS01 線上自學<br>Python 入門</span><a id="yt_5" href="javascript: void(0)" class="yellow_btn">我要報名</a></div>
+    <button type="button" class="drawer-toggle drawer-hamburger"> <span class="sr-only">選單</span> <span class="drawer-hamburger-icon"></span> </button>
+  </div>
+    <nav class="drawer-nav" role="navigation">
+      <ul class="drawer-menu drawer-menu--right">
+        <li><a href="http://www.codingbar.ai/course/teens/" class="drawer-menu-item">秋季常態課程</a></li>
+       <li><a href="http://www.codingbar.ai/course/P1S/" class="drawer-menu-item">社會人士課程</a></li>
+        <!--<li><a class="drawer-menu-item">關於我們</a></li>-->
+        <li><a href="https://medium.com/codingbar" class="drawer-menu-item" target="_blank">專欄</a></li>
+        <li><a href="https://www.facebook.com/codingbar" class="drawer-menu-item fb" target="_blank"><img src="../img/fb.svg" class="img fb"><i>紛絲團</i></a></li>
+        <li><a class="drawer-menu-item yellow_btn">登入<i>Codingbar</i></a></li>
+      </ul>
+    </nav>
+   </div>
+</header>
+<div class="wrapper-main">
+<div class="wrapper">
+  <section class="main-section">
+    <div class="container">
+      <h2 class="text-center"><i>線上自學班 L1AS01</i>Python 入門</h2>
+     <div class="top_icon">
+        <div class="icon_box"><span><img src="../img/icon4.png" class="img icon"></span>
+        <h4 class="text-center">學習進度自己掌握</h4>
+          <p>每週二上午10點開放<br>該週學習課程影片與練習題目，<br>依個人學習狀況，安排學習進度。</p>
+        </div>
+        <div class="icon_box"><span><img src="../img/icon2.png" class="img icon"></span>
+        <h4 class="text-center">一對一線上輔導</h4>
+          <p>享有 2 小時一對一線上輔導。<br>每次預約以30分鐘為單位，<br>最後一堂課結束30天內使用完畢。</p>
+        </div>
+        <div class="icon_box"><span><img src="../img/icon3a.png" class="img icon"></span>
+        <h4 class="text-center">學習狀況隨時掌握</h4>
+          <p>每週一 19:00 前電子郵件寄送<br>學生上週學習狀況表，<br>讓您隨時掌握小孩的學習狀況！</p>
+        </div>
+      </div>
+       <div class="text-center"> <a href="javascript: void(0)" class="yellow_btn">還有不清楚的？<span class="mobile_hid">透過 Line @codingbar </span>與我們聯絡</a> </div>
+      <img src="../img/top_bg.png" class="img top_bg"> <img src="../img/top_bg2.png" class="img top_bg2"> <img src="../img/top_bg3.png" class="img top_bg3"> </div>
+  </section>
+  
+  <section class="time-section">
+    <div class="container">
+      <h3 class="title text-center">課程單元與上課時間</h3>
+      <p class="text-center time_words">每週二 10:00AM 開放新單元，<br>
+依照學生能力，可以自行安排學習時間與每週的練習時間與次數。</p>
+      <div class="date_main">
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>二月</u><i>26</i></span>
+            <p><i>第一單元</i><span>程式入門和基本輸出/輸入</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>三月</u><i>5</i></span>
+            <p><i>第二單元</i><span>條件控制</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>三月</u><i>12</i></span>
+            <p><i>第三單元</i><span>for 迴圈</span></p>
+            </a></li>
+           <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>三月</u><i>19</i></span>
+            <p><i>第三單元</i><span>while 迴圈</span></p>
+            </a></li>
+        </ul>
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>三月</u><i>26</i></span>
+            <p><i>第五單元</i><span>串列</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>四月</u><i>2</i></span>
+            <p><i>第六單元</i><span>函式</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>四月</u><i>9</i></span>
+            <p><i>第七單元</i><span>綜合應用</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>四月</u><i>16</i></span>
+            <p><i>第八單元</i><span>期末大挑戰</span></p>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>  <div class="go_here"></div>
+  <section id="section-vision" class="movie-section">
+    <div class="container ridio_main">
+      <div class="ridio_content">
+        <h3>報名課程</h3>
+        <p>請確認報名班級，選擇上課時段，填寫學生基本資料與家長聯絡資料</p>
+        <p class="radio_title">報名課程</p>
+        <h3 class="greenfont">L1AS01 線上自學 Python入門 NT 2,500</h3>
+        <p class="radio_title">填寫學生基本資料</p>
+        <div class="text_input email">
+          <label for="r3">Email</label>
+          <input name="Email" id="email" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫學生電子郵件，此為系統登入帳號" title="請填寫學生電子郵件，此為系統登入帳號">
+        </div>
+        <div class="name">
+          <div class="name_box">
+            <label for="r4">name</label>
+            <input name="name" id="name" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫學生姓名" title="請填寫學生姓名">
+          </div>
+          <div class="name_box">
+            <label for="r5">phone</label>
+            <input name="phone" id="school" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫就讀學校與年級，如XX國小六年級" title="請填寫就讀學校與年級，如XX國小六年級">
+          </div>
+        </div>
+        <p class="radio_title">填寫家長聯絡資料</p>
+         <div class="text_input email">
+          <label for="r3">Email</label>
+          <input name="Email" id="pemail" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫家長電子郵件，以便寄送學習狀況" title="請填寫家長電子郵件，以便寄送學習狀況">
+        </div>
+        <div class="name">
+          <div class="name_box">
+            <label for="r4">name</label>
+            <input name="name" id="pname" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫家長姓名" title="請填寫家長姓名">
+          </div>
+          <div class="name_box">
+            <label for="r5">phone</label>
+            <input name="phone" id="phone" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫手機電話，以便緊急聯絡" title="請填寫手機電話，以便緊急聯絡">
+          </div>
+        </div>
+      </div>
+      <div class="text-center"> <a class="submit_btn greenbg" href="javascript: register()">送出報名表</a></div>
+    </div>
+    <div class="container">
+      <div class="notice_words">
+        <ul>
+          <li class="flex_style"><span class="line">課前準備</span>
+            <ol>
+              <li>只要準備一部能透過 Chrome 瀏覽器連上網的電腦</li>
+              <li>您不需要具備有其他程式語言的基礎，但需具備國中程度的基礎英文以及數學</li>
+              <li>放輕鬆，本課程就是希望在無負擔的狀態下，讓您快速建立程式語言的概念</li>
+            </ol>
+          </li>
+          <li class="flex_style"><span class="line">繳費方式</span>
+            <p>報名成功後，系統將發送電子郵件通知您繳費方式，您可透過多元繳費機制繳費。若有任何問題，歡迎透過 LINE 搜尋 @codingbar 與我們聯絡。</p>
+          </li>
+          <li class="flex_style"><span class="line">注意事項</span>
+            <p>已繳費因故無法參加課程者，於第一堂課上線五日內提出申請，全額退費；之後則不退費。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img src="../img/main_bg.png" class="img main_bg"><img src="../img/top_bg4.png" class="img top_bg4"> <img src="../img/top_bg5a.png" class="img top_bg5"> </section>
+</div></div>
+<section class="movie-section gray2">
+  <div class="container">
+    <h3 class="title text-center">常見問題</h3>
+    <div class="qa_main">
+      <dl>
+        <dd>Q1：學習時如果遇到問題我如何得到協助？</dd>
+        <dt>你可以透過 CodingBar 系統直接提問，老師將在 24小時內回覆你的問題。</dt>
+      </dl>
+      <dl>
+        <dd>Q2：線上課程可以看幾次？</dd>
+        <dt>你可以無限多次觀看線上影片及實作練習。</dt>
+      </dl>
+      <dl>
+        <dd>Q3：如果需要，我可以有一對一線上或實體輔導嗎？</dd>
+        <dt>可以的，您可以加購一對一線上或實體輔導課。時間由你跟老師預約，線上輔導每次至少30分鐘，實體輔導每次至少60分鐘，地點在忠孝新生捷運站附近（忠孝東路三段96號3F）。一對一輔導費用為每小時新台幣500元。</dt>
+      </dl>
+      <dl>
+        <dd>Q4：如果孩子自制力較差，會建議上自學班嗎？</dd>
+        <dt>我們每週會以電子郵件的方式寄送孩子的學習狀況給家長，如果孩子進度落後，我們也會主動透過電話家長聯絡。如果您覺得孩子還是難以自己上網學習，那我們會建議您讓他上線上家教小班，每週固定一個時間跟著老師進度學習。</dt>
+      </dl>
+      <dl>
+        <dd>Q5：為什麼一對一線上輔導有最後一堂課後30天的限制？</dd>
+        <dt>我們希望學生按部就班學習，尤其是線上課程，因此設下30天限制，就是希望學生可以盡快完成練習不要拖延，避免降低學習熱情。</dt>
+      </dl>
+      <dl>
+        <dd>Q6：如果我對以上內容還有些問題，我該怎麼獲得協助？</dd>
+        <dt>你可以透過電話與我們聯絡：(02)7717-9386，也可以透過 LINE 搜尋：@codingbar 我們會盡快回覆你。</dt>
+      </dl>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <ul>
+      <li><img src="../img/logo.png" class="img logo">
+        <p>瑞比智慧科技股份有限公司</p>
+      </li>
+      <li><span>公司地址</span>
+        <p>台北市忠孝東路三段96號3F</p>
+      </li>
+      <li><span>電子郵件</span>
+        <p>contact<i>@</i>codingbar.ai</p>
+      </li>
+      <li><span>公司電話</span>
+        <p>(02)7717-9386</p>
+      </li>
+      <li><span>Line</span>
+        <p><i>@</i>codingbar</p>
+      </li>
+    </ul>
+    <ul class="copyright">Copyright © 2019 Airabbi  All rights reserved</ul>
+  </div>
+</footer>
+<script src="../js/jquery-2.2.1.min.js"></script>
+<script src="../js/iscroll.min.js"></script>
+<script src="../js/drawer.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="../js/tether.js"></script>
+<script src="../js/select.js"></script>
+<script src="../js/main.js"></script>
+
+</body>
+</html>

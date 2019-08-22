@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh-tw">
+<!--<![endif]-->
+<head>
+  <title>青少年程式設計課程</title>
+  <meta name="description" content="11~99 歲的程式學習！透過有趣、方便、高效率的學習方式，打破你對學程式很難、無趣、用不到的刻板印象！" />
+  <meta name="keywords" content="自學, 程式語言, Python,入門, 線上課程, 程式課程, 學程式, coding 課程" />
+  <meta name="copyright" content="瑞比智慧科技 Copyright &copy; All rights reserved">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- apple mobile web app capable -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-batr-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="format-detection" content="no">
+  <!-- 上面是必須 meta其他放後面 -->
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="copyright" content="">
+  <link rel="shortcut icon" href="favicon.ico"/>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="css/master.css" />
+
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TD36QVX');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Global site tag (gtag.js) - Google Ads: 784787163 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-784787163"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-784787163');
+      gtag('config', 'UA-129789023-1');
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+      console.log("FB-Begin");
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window,document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1950066075061967');
+      fbq('track', 'PageView');
+      console.log("FB-End");
+  </script>
+  <noscript>
+    <img height="1" width="1"
+         src="https://www.facebook.com/tr?id=1950066075061967&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+
+  <script>
+
+      function register(idx) {
+
+          const purpose = document.getElementById("purpose" + idx) ? document.getElementById("purpose" + idx).value:undefined;
+          const email = document.getElementById("email" + idx) ? document.getElementById("email" + idx).value:undefined;
+
+          const data = {
+              email: email,
+              purpose: purpose,
+          };
+
+          if (data.email.trim() === "") {
+              alert("忘記填寫Email了!");
+              return;
+          }
+
+          const regex = /\S+@\S+\.\S+/;
+          const isEmailFormat = regex.test(data.email);
+          if( isEmailFormat === false ){
+              alert("Email 格式錯誤了!");
+              return;
+          }
+
+          if (!data.purpose || data.purpose.trim() === "") {
+              alert("忘記選擇感興趣的課程了!");
+              return;
+          }
+
+          sendRegister(data);
+      }
+
+      function sendRegister(data) {
+          fetch('https://codingbar.net/service/course/interest', {
+              method: 'POST',
+              body: JSON.stringify(data),
+              headers: new Headers({
+                  'Content-Type': 'application/json'
+              })
+          }).catch(error => alert("傳送失敗! 請聯繫客服人員!"))
+              .then(response => {
+                  if (response.status === 200) {
+                      response.json().then(data => {
+                          //console.log(data);
+                          if (data.status === "success") {
+                              alert("已收到您的回覆，敬請期待開課通知！");
+                              document.location.href='./';
+                          } else {
+                              alert("傳送失敗! 請聯繫客服人員!")
+                          }
+                      }).catch(err => {
+                          alert("傳送失敗! 請聯繫客服人員!");
+                      });
+                  } else {
+                      alert("傳送失敗! 請聯繫客服人員!");
+                  }
+              });
+      }
+  </script>
+
+</head>
+<body class="drawer drawer--top">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD36QVX"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="hid_over index">
+  <header class="drawer-navbar" role="banner">
+    <div class="drawer-container">
+      <div class="drawer-navbar-header">
+        <h1><a href="javascript: void(0)" title="logo drawer-brand">CodingBar</a></h1>
+        <div class="scroll_show"><span>Python 入門<br>最新課程方案</span><a id="yt_5" href="javascript: void(0)" class="yellow_btn">立即報名</a></div>
+        <button type="button" class="drawer-toggle drawer-hamburger"> <span class="sr-only class">青少年課程</span> <span class="drawer-hamburger-icon"></span> </button>
+      </div>
+      <nav class="drawer-nav" role="navigation">
+        <ul class="drawer-menu drawer-menu--right">
+          <li><a href="http://www.codingbar.ai/course/P1S/" class="drawer-menu-item">社會人士課程</a></li>
+          <li><a href="http://www.codingbar.ai/course/teens/" class="drawer-menu-item">秋季常態課程</a></li>
+          <!--<li><a class="drawer-menu-item">關於我們</a></li>-->
+          <li><a href="https://medium.com/codingbar" class="drawer-menu-item" target="_blank">專欄</a></li>
+          <li><a href="https://www.facebook.com/codingbar" class="drawer-menu-item fb" target="_blank"><img src="img/fb.svg" class="img fb"><i>紛絲團</i></a></li>
+          <li><a href="http://app.codingbar.ai" class="drawer-menu-item yellow_btn">登入<i>Codingbar</i></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="hid_over2">
+    <img src="img/1.svg" class="img top_background" >
+    <img src="img/2.svg" class="img top_background top_bg6">
+    <img src="img/3.svg" class="img top_background top_bg7">
+    <img src="img/4.png" class="img top_background2 pc">
+  </div>
+  <div class="top-main">
+    <section class="main-section">
+      <div class="container">
+        <h2 class="text-tran">青少年程式設計課程<br>
+          <span>專為 12~18 歲所設計</span></h2>
+        <div class="text_main">
+          <div class="text_box">
+            <h3>我們知道您的需要</h3>
+            <p>如果您想加強孩子的數學，<br class="mobile">訓練他的邏輯思考力，<br>
+              如果孩子學過 Scratch，<br class="mobile">想讓他繼續學程式不中斷，<br>
+              如果孩子對電機、資訊工程有興趣，<br>我們建議您讓他來學程式設計！</p>
+            <p>每天只要 20 分鐘，<br>
+              透過我們獨創的 CodingBar 學習平台，<br>
+              讓孩子學習更有彈性，再也不怕沒時間，<br>又享有實體課程的互動性！<br>
+              幫您省下大筆學費，<br>
+              再也不用在教育與經濟考量中掙扎了！</p>
+          </div>
+          <div class="text_box">
+            <h3>服務創新，學習更有成效</h3>
+            <p>CodingBar 不同於一般的線上課程，<br>
+              一般的線上學習都是觀看課程影片，<br>
+              老師無法瞭解學生的學習狀況，<br>
+              師生缺乏互動，容易降低學生學習意願。</p>
+            <p>在 CodingBar 上，<br>
+              老師可以遠端查看學生練習的程式碼，<br>
+              學生練習系統自動批閱還可以直接提問，<br>
+              讓孩子在最有彈性、最輕鬆的狀態下學習，<br>
+              每週系統也將自動通知您孩子的狀況，<br>
+              讓您再也不用擔心孩子的學習了！</p>
+          </div>
+        </div>
+        <img src="img/bottom_bg.png" class="img bottom_bg"> </div>
+    </section>
+    <section class="level-section"> <span class="embed-vedio">
+    <iframe width="100%" height="auto" src="https://www.youtube.com/embed/ZLnK9Oh1LIY" frameborder="0" allowfullscreen="" title="rdlVBKKtznM"></iframe>
+    </span>
+      <div class="container">
+        <h3 class="title text-center">完整四階課程規劃</h3>
+        <p class="text-center">從 Python 入門到 C++，<br class="mobile">每一階32堂課，分成四期，每期8堂課。<br>
+          課程完整規劃，不用擔心無法進階學習。<br>
+          上完第三階具備考 APCS<br class="mobile"> (大學程式設計先修檢測) 實力，<br>
+          Level 4 結束，孩子如果有興趣，<br class="mobile">還可以進階 Level5 人工智慧課程。</p>
+        <div class="level_wrap">
+          <div class="level_title">
+            <div class="item flex-1 active wow pullUp">Level 1</div>
+            <div class="item flex-2 wow pullUp">Level 2</div>
+            <div class="item flex-3 wow pullUp">Level 3</div>
+            <div class="item flex-4 wow pullUp">Level 4</div>
+          </div>
+          <div class="level_main">
+            <ul class="level_list">
+              <li>
+                <div class="level_btn">
+                  <div class="level_chose text-center"> <span class="levelname c01">Python 入門<br>
+                  遊戲設計</span> <span class="levelname c02">Python 進階<br>
+                  演算法</span> <span class="levelname c03">C++ 與 APCS</span> <span class="levelname c04">Python 應用<br>
+                  網際網路與資料科學</span> </div>
+                </div>
+              </li>
+              <li>
+                <div class="level_btn">
+                  <div class="level_chose"> <span class="levelname c01">L1A <i>｜</i> Python 入門</span> <span class="levelname c02">L2A <i>｜</i> 綜合應用</span> <span class="levelname c03">L3A <i>｜</i> C++ 入門</span> <span class="levelname c04">L4A <i>｜</i> html/Javascript</span> </div>
+                </div>
+              </li>
+              <li>
+                <div class="level_btn">
+                  <div class="level_chose"> <span class="levelname c01">L1B <i>｜</i> PyGame 遊戲設計</span> <span class="levelname c02">L2B <i>｜</i> 資料結構</span> <span class="levelname c03">L3B <i>｜</i> C++ 進階</span> <span class="levelname c04">L4B <i>｜</i> 網路爬蟲與應用</span> </div>
+                </div>
+              </li>
+              <li>
+                <div class="level_btn">
+                  <div class="level_chose"> <span class="levelname c01">L1C <i>｜</i> 遊戲設計專題一</span> <span class="levelname c02">L2C <i>｜</i> 演算法一</span> <span class="levelname c03">L3C <i>｜</i> APCS 專題一</span> <span class="levelname c04">L4C <i>｜</i> 資料科學專題一</span> </div>
+                </div>
+              </li>
+              <li>
+                <div class="level_btn">
+                  <div class="level_chose"> <span class="levelname c01">L1D <i>｜</i> 遊戲設計專題二</span> <span class="levelname c02">L2D <i>｜</i> 演算法二</span> <span class="levelname c03">L3D <i>｜</i> APCS 專題二</span> <span class="levelname c04">L4D <i>｜</i> 資料科學專題二</span> </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="features-section gray2">
+      <div class="container">
+        <h3 class="title text-center">多元上課方式</h3>
+        <p class="text-center">現在的孩子都很忙碌，<br class="mobile">CodingBar 規劃多種線上上課方式。<br>
+          您可以挑選合適的方式，<br class="mobile">讓孩子學習更有彈性！</p>
+        <div class="top_icon">
+          <div class="icon_box add_bg"><span><img src="img/class_icon1.png" class="img icon"></span>
+            <h3 class="greenfont">線上自學</h3>
+            <p>每週開放課程影片和練習，<br>
+              不限時間地點都可學習，<br>
+              還有一對一輔導。</p>
+            <ul class="list_style2">
+              <li>不限時間、地點學習，彈性高</li>
+              <li>於 CodingBar 平台上自學，系統每週開放當週的課程影片和練習，學生寫的程式碼系統會自動檢核</li>
+              <li>透過平台提問，老師會在 24 小時內線上回答</li>
+              <li>享有 2 小時一對一輔導時間</li>
+              <li>學生人數不受限</li>
+              <li>可彈性時間上課，無補課問題</li>
+            </ul>
+          </div>
+          <div class="icon_box add_bg"><span><img src="img/class_icon2.png" class="img icon"></span>
+            <h3 class="blue_font">線上小班家教</h3>
+            <p>線上最多 12 人同時上線學習，<br>有問題立刻得到老師協助。</p>
+            <ul class="list_style">
+              <li>高互動小班學習，不受限上課地點</li>
+              <li>每週固定時間，由老師透過Codingbar平台，遠距線上教學</li>
+              <li>課堂上立刻提問，老師可以即時回答</li>
+              <li>享有 1 小時一對一輔導時間</li>
+              <li>每班最多12人（不含補課學生）</li>
+              <li>可選擇在當週不同時段其他班級補課，或自行觀看課程影片</li>
+            </ul>
+          </div>
+          <div class="icon_box add_bg"><span><img src="img/class_icon3.png" class="img icon"></span>
+            <h3>一對一客製化</h3>
+            <p>請與我們聯絡，<br>
+              讓我們一起規劃一個<br>
+              適合您孩子的學習模式！</p>
+            <ul class="list_style3">
+              <li>請透過以下方式，<br>
+                與我們聯絡：<br>
+                <br>
+                Line<br>
+                @codingbar<br>
+                <br>
+                電話<br>
+                (02)7717-9386<br>
+                <br>
+                電子郵件<br>
+                service@codingbar.ai</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-center mobile">還有其他疑問？打電話 (02)7717-9386<br> 或透過 Line @codingbar 與我們聯絡</p>
+        <div class="text-center"> <a href="javascript: void(0)" class="yellow_btn show_tab"></a> </div>
+        <div id="hid_tab">
+          <h3 class="title text-center">多元上課方式比較表</h3>
+          <div class="comparison whitebg">
+            <table class="table">
+              <thead>
+              <tr>
+                <th></th>
+                <th><img src="img/class_icon1.png" class="img class_icon">
+                  <p class="text-center greenfont">線上自學</p></th>
+                <th><img src="img/class_icon2.png" class="img class_icon">
+                  <p class="text-center blue_font">線上小班家教</p></th>
+                <th><img src="img/class_icon3.png" class="img class_icon">
+                  <p class="text-center">客製化</p></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>特點</td>
+                <td>不限時間、地點學習，彈性高</td>
+                <td>高互動小班學習，不受限上課地點</td>
+                <td class="text-left rowspan6" rowspan="6">請透過以下方式，<br>
+                  與我們聯絡：<br>
+                  <br>
+                  Line<br>
+                  @codingbar<br>
+                  <br>
+                  電話<br>
+                  (02)7717-9386<br>
+                  <br>
+                  電子郵件<br>
+                  service@codingbar.ai</td>
+              </tr>
+              <tr>
+                <td>上課方式</td>
+                <td>於 CodingBar 平台上自學，系統每週開放當週的課程影片和練習，學生寫的程式碼系統會自動檢核</td>
+                <td>每週固定時間，由老師透過Codingbar平台，遠距線上教學</td>
+              </tr>
+              <tr>
+                <td>提問方式</td>
+                <td>透過平台提問，老師會在 24 小時內線上回答</td>
+                <td>課堂上立刻提問，老師可以即時回答</td>
+              </tr>
+              <tr>
+                <td>輔導時間</td>
+                <td>享有 2 小時一對一輔導時間</td>
+                <td>享有 1 小時一對一輔導時間</td>
+              </tr>
+              <tr>
+                <td>學生人數</td>
+                <td>不受限</td>
+                <td>每班最多12人（不含補課學生）</td>
+              </tr>
+              <tr>
+                <td>補課方式</td>
+                <td>可彈性時間上課，無補課問題</td>
+                <td>可選擇在當週不同時段其他班級補課，或自行觀看課程影片</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-center">還有其他疑問？打電話 (02)7717-9386 或透過 Line @codingbar 與我們聯絡</p>
+        </div>
+      </div>
+    </section>
+    <section class="theme">
+      <div class="container">
+        <div class="theme_content"><span>
+        <h3>專題式教學</h3>
+        <p>我們一直認為程式只是工具，學程式的最終目的是用來解決問題，在這過程中，訓練邏輯、思考、創意力。因此我們採用專題式教學，讓孩子知道如何學以致用！</p>
+        </span></div>
+        <div class="theme_img"><span><img src="img/big_icon1.png" class="img big_icon1"></span></div>
+      </div>
+    </section>
+    <section class="theme gray2">
+      <div class="container">
+        <div class="theme_content"><span>
+        <h3>課後一對一輔導機制</h3>
+        <p>學習程式語言跟其他學科很大的不同是：實作練習是最快的學習方式。我們提供超過 300題(持續增加中)的課後練習供同學「練功」，遇到問題還可以跟老師預約一對一線上輔導。</p>
+        </span></div>
+        <div class="theme_img"><span><img src="img/big_icon2.png" class="img big_icon2"></span></div>
+      </div>
+    </section>
+    <section class="theme">
+      <div class="container">
+        <div class="theme_content"><span>
+        <h3>兩大安心保證</h3>
+        <p>第一堂課結束後五天內，不需任何理由都可以申請全額退費。您也不用擔心孩子線上學習效果不彰，我們會每週主動通知您孩子的學習狀況，不用擔心白花錢！</p>
+        </span></div>
+        <div class="theme_img"><span><img src="img/big_icon3.png" class="img big_icon3"></span></div>
+      </div>
+    </section>
+    <section class="theme gray2">
+      <div class="container">
+        <div class="theme_content"><span>
+        <h3>課後永續交流</h3>
+        <p>學習不是一時，是永遠的！我們會不定期舉辦講座、比賽、討論會，讓所有新、舊生一起參加，彼此交流，每季至少一次的實體活動，讓大家學習不中斷。</p>
+        </span></div>
+        <div class="theme_img"><span><img src="img/big_icon4.png" class="img big_icon4"></span></div>
+      </div>
+    </section><div class="go_here"></div>
+    <section class="cost-section">
+      <div class="container">
+        <h3 class="title text-center">最新課程方案</h3>
+        <div class="class_main">
+          <div class="top_Program">
+            <div class="program_box green_style">
+              <div class="box_content">
+                <p>線上自學 L1AS</p>
+                <h3 class="blue_font">L1A-Python入門</h3>
+                <p>∙ 2月26日起開始上課，共 8 週課程<br>
+                  ∙ 一對一線上輔導 2 小時（需預約）<br>
+                  ∙ 每週一 19:00 前電子郵件寄送學生上週學習狀況表</p>
+              </div>
+              <div class="box_content blue_bg">
+                <h4 class="bottom_font"><i>$2,500</i> 新春優惠，限2/20前報名享有</h4>
+                <p class="money">原價 $3,200</p>
+                <div class="two_btn"> <a href="Class/L1AS.html" class="line_btn" target="_blank">查看詳細內容</a> <a href="Class/L1AS.html" target="_blank" id="li-vision" class="yellow_btn">立即報名</a></div>
+              </div>
+            </div>
+            <div class="program_box">
+              <div class="box_content">
+                <p>線上小班家教 L1AT</p>
+                <h3 class="blue_font">L1A-Python入門</h3>
+                <p>∙ 3月9日起每週六上課，共 8 週課程<br>
+                  ∙ 分上午班與下午班，可彈性選擇補課<br>
+                  ∙ 一對一線上輔導 1 小時（需預約）<br>
+                  ∙ 每週五 19:00 前電子郵件寄送學生當週學習狀況表</p>
+              </div>
+              <div class="box_content blue_bg">
+                <h4 class="bottom_font"><i>$3,800</i> 新春優惠，限3/4前報名享有</h4>
+                <p class="money">原價 $4,800</p>
+                <div class="two_btn"> <a href="Class/L1AT.html" target="_blank" class="line_btn">查看詳細內容</a> <a href="Class/L1AT.html" target="_blank" id="li-vision2" class="yellow_btn">立即報名</a></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <div class="hid_line"><span class="number_give"></span></div>
+    <section class="coming-section">
+      <div class="container">
+        <h3 class="title text-center">即將推出</h3>
+        <div class="top_Program2">
+          <div class="program_box2">
+            <div class="box_content">
+              <p>線上自學 L1BS01</p>
+              <h3 class="greenfont">L1B-PyGame遊戲設計</h3>
+              <p class="blackfont">4月23日起開始上課，共 8 週課程教您如何運用 PyGame 模組開發有趣的遊戲，學會程式設計的技巧</p>
+              <a href="#Sign_up" id="Signup" class="yellow_btn signup class1">我有興趣</a> </div>
+          </div>
+          <div class="program_box2">
+            <div class="box_content">
+              <p>線上小班家教 L1BT01</p>
+              <h3 class="blue_font">L1B-PyGame遊戲設計 </h3>
+              <p>5月11日起開始上課，共 8 週課程教您如何運用 PyGame 模組開發有趣的遊戲，學會程式設計的技巧</p>
+              <a href="#Sign_up2" id="Signup" class="yellow_btn signup class2">我有興趣</a> </div>
+          </div>
+          <div class="program_box2">
+            <div class="box_content">
+              <p>線上自學 L1AS02</p>
+              <h3 class="greenfont">L1A-Python入門</h3>
+              <p class="blackfont">4月23日起開始上課，共 8 週課程教您最熱門的程式語言 Python，奠定程式設計的基礎</p>
+              <a href="#Sign_up3" id="Signup" class="yellow_btn signup class3">我有興趣</a> </div>
+          </div>
+          <div class="program_box2">
+            <div class="box_content">
+              <p>線上小班家教 L1AT02</p>
+              <h3 class="blue_font">L1A-Python入門</h3>
+              <p class="blackfont">5月11日起開始上課，共 8 週課程教您最熱門的程式語言 Python，奠定程式設計的基礎 </p>
+              <a href="#Sign_up4" id="Signup" class="yellow_btn signup class4">我有興趣</a> </div>
+          </div>
+        </div><p class="text-center blackfont">你還對什麼主題應用有興趣？<br class="mobile">寫信告訴我們，讓我們優先開發這些課程。</p>
+      </div>
+
+    </section>
+  </div>
+  <section class="movie-section gray">
+    <div class="container">
+      <h3 class="title text-center">常見問題</h3>
+      <div class="qa_main">
+        <dl>
+          <dd>Q1：如果學生已經有些基礎的程式設計能力，可以從 Level 2 以後開始學習嗎？</dd>
+          <dt>可以的。但為了讓學生能順利銜接，我們會做些簡單的測試建議他適合的課程。</dt>
+        </dl>
+        <dl>
+          <dd>Q2：線上學習如何確保學生的學習成效？</dd>
+          <dt>程式學習和音樂學習一樣，都需要大量的實作練習，因此我們特別為家長省荷包，開發 CodingBar 平台，當孩子在做練習時，由系統自動批閱並給予提示，老師透過平台可以看到每個同學的程式碼，知道每位同學的學習狀況給予協助，因此即使是線上學習，老師和學生還是可以高度互動，但又兼具線上學習的彈性，同時又可降低開課成本，讓更多人一起來學程式。</dt>
+        </dl>
+        <dl>
+          <dd>Q3：這門課上完之後，如果想進階學習，後續有什麼進階課程?</dd>
+          <dt>針對 12~18 歲的同學，我們有四階段的課程可以學習：Python入門 - 遊戲設計、Python進階 - 演算法、C++與APCS、Python應用 - 網際網路與資料科學。每一階段又各分四期，每期 8 堂課，因此共有完整 128 堂課的規劃供進階學習。</dt>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <footer id="footer">
+    <div class="container">
+      <ul>
+        <li><img src="img/logo.png" class="img logo">
+          <p>瑞比智慧科技股份有限公司</p>
+        </li>
+        <li><span>公司地址</span>
+          <p>台北市忠孝東路三段96號3F</p>
+        </li>
+        <li><span>電子郵件</span>
+          <p>service<i>@</i>codingbar.ai</p>
+        </li>
+        <li><span>公司電話</span>
+          <p>(02)7717-9386</p>
+        </li>
+        <li><span>Line</span>
+          <p><i>@</i>codingbar</p>
+        </li>
+      </ul>
+      <ul class="copyright">
+        Copyright © 2019 airabbi  all rights reserved
+      </ul>
+    </div>
+  </footer>
+  <div class="lightbox" id="Sign_up">
+    <figure> <a href="##" class="close"></a>
+      <figcaption>
+        <div class="ridio_main">
+          <div class="ridio_content">
+            <h3>我有興趣</h3>
+            <p>請填下您的電子郵件，選擇您有興趣的課程，課程一旦開放報名，我們會第一時間通知您。<br>
+              偷偷跟你說，現在留下電子郵件，還會收到特殊優惠折扣碼。</p>
+            <p class="radio_title">我有興趣的課程</p>
+            <div class="scroll-parent all_width">
+              <select data-select-like-alignement="never" class="drop-select" id="purpose1">
+                <option value="">請選擇課程</option>
+                <option value="L1BS01 線上自學 PyGame 遊戲設計"> L1BS01 線上自學 PyGame遊戲設計</option>
+                <option value="L1BT01 線上小班家教 PyGame 遊戲設計"> L1BT01 線上小班家教 PyGame遊戲設計</option>
+                <option value="L1AS02 線上自學 Python 入門"> L1AS02 線上自學 Python入門</option>
+                <option value="L1AT02 線上小班家教 Python 入門"> L1AT02 線上小班家教 Python入門</option>
+              </select>
+            </div>
+            <p class="radio_title">填寫您的電子郵件</p>
+            <div class="text_input email">
+              <label for="r3">Email</label>
+              <input name="Email" id="email1" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫電子郵件" title="請填寫電子郵件">
+            </div>
+          </div>
+          <div class="text-center"> <a class="submit_btn" href="javascript: register(1)">送出</a></div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="lightbox" id="Sign_up2">
+    <figure> <a href="##" class="close"></a>
+      <figcaption>
+        <div class="ridio_main">
+          <div class="ridio_content">
+            <h3>我有興趣</h3>
+            <p>請填下您的電子郵件，選擇您有興趣的課程，課程一旦開放報名，我們會第一時間通知您。<br>
+              偷偷跟你說，現在留下電子郵件，還會收到特殊優惠折扣碼。</p>
+            <p class="radio_title">我有興趣的課程</p>
+            <div class="scroll-parent all_width">
+              <select data-select-like-alignement="never" class="drop-select2" id="purpose2">
+                <option value="">請選擇課程</option>
+                <option value="L1BS01 線上自學 PyGame 遊戲設計"> L1BS01 線上自學 PyGame遊戲設計</option>
+                <option value="L1BT01 線上小班家教 PyGame 遊戲設計"> L1BT01 線上小班家教 PyGame遊戲設計</option>
+                <option value="L1AS02 線上自學 Python 入門"> L1AS02 線上自學 Python入門</option>
+                <option value="L1AT02 線上小班家教 Python 入門"> L1AT02 線上小班家教 Python入門</option>
+              </select>
+            </div>
+            <p class="radio_title">填寫您的電子郵件</p>
+            <div class="text_input email">
+              <label for="r3">Email</label>
+              <input name="Email" id="email2" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫電子郵件" title="請填寫電子郵件">
+            </div>
+          </div>
+          <div class="text-center"> <a class="submit_btn" href="javascript: register(2)">送出</a></div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="lightbox" id="Sign_up3">
+    <figure> <a href="##" class="close"></a>
+      <figcaption>
+        <div class="ridio_main">
+          <div class="ridio_content">
+            <h3>我有興趣</h3>
+            <p>請填下您的電子郵件，選擇您有興趣的課程，課程一旦開放報名，我們會第一時間通知您。<br>
+              偷偷跟你說，現在留下電子郵件，還會收到特殊優惠折扣碼。</p>
+            <p class="radio_title">我有興趣的課程</p>
+            <div class="scroll-parent all_width">
+              <select data-select-like-alignement="never" class="drop-select3" id="purpose3">
+                <option value="">請選擇課程</option>
+                <option value="L1BS01 線上自學 PyGame 遊戲設計"> L1BS01 線上自學 PyGame遊戲設計</option>
+                <option value="L1BT01 線上小班家教 PyGame 遊戲設計"> L1BT01 線上小班家教 PyGame遊戲設計</option>
+                <option value="L1AS02 線上自學 Python 入門"> L1AS02 線上自學 Python入門</option>
+                <option value="L1AT02 線上小班家教 Python 入門"> L1AT02 線上小班家教 Python入門</option>
+              </select>
+            </div>
+            <p class="radio_title">填寫您的電子郵件</p>
+            <div class="text_input email">
+              <label for="r3">Email</label>
+              <input name="Email" id="email3" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫電子郵件" title="請填寫電子郵件">
+            </div>
+          </div>
+          <div class="text-center"> <a class="submit_btn" href="javascript: register(3)">送出</a></div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+  <div class="lightbox" id="Sign_up4">
+    <figure> <a href="##" class="close"></a>
+      <figcaption>
+        <div class="ridio_main">
+          <div class="ridio_content">
+            <h3>我有興趣</h3>
+            <p>請填下您的電子郵件，選擇您有興趣的課程，課程一旦開放報名，我們會第一時間通知您。<br>
+              偷偷跟你說，現在留下電子郵件，還會收到特殊優惠折扣碼。</p>
+            <p class="radio_title">我有興趣的課程</p>
+            <div class="scroll-parent all_width">
+              <select data-select-like-alignement="never" class="drop-select4" id="purpose4">
+                <option value="">請選擇課程</option>
+                <option value="L1BS01 線上自學 PyGame 遊戲設計"> L1BS01 線上自學 PyGame遊戲設計</option>
+                <option value="L1BT01 線上小班家教 PyGame 遊戲設計"> L1BT01 線上小班家教 PyGame遊戲設計</option>
+                <option value="L1AS02 線上自學 Python 入門"> L1AS02 線上自學 Python入門</option>
+                <option value="L1AT02 線上小班家教 Python 入門"> L1AT02 線上小班家教 Python入門</option>
+              </select>
+            </div>
+            <p class="radio_title">填寫您的電子郵件</p>
+            <div class="text_input email">
+              <label for="r3">Email</label>
+              <input name="Email" id="email4" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫電子郵件" title="請填寫電子郵件">
+            </div>
+          </div>
+          <div class="text-center"> <a class="submit_btn" href="javascript: register(4)">送出</a></div>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/iscroll.min.js"></script>
+<script src="js/drawer.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/tether.js"></script>
+<script src="js/select.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

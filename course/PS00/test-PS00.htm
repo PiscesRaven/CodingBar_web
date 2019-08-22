@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="zh-tw">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- apple mobile web app capable -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-batr-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="format-detection" content="no">
+<!-- 上面是必須 meta其他放後面 -->
+<title></title>
+<meta name="description" content="Python 入門線上自學班：跟著每週進度，保證七週後能獨立開發小程式。第一堂課後五天內覺得不合適，保證全額退費！透過 CodingBar 智慧平台學習，不限時間、地點，又享有實體課程的高互動性！" />
+<meta name="keywords" content="自學,程式語言,Python,入門,線上課程,程式課程,學程式,coding 課程" />
+<meta name="copyright" content="瑞比智慧科技 Copyright &copy; All rights reserved">
+<link rel="shortcut icon" href="favicon.ico"/>
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+<link rel="stylesheet" href="css/master.css" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129789023-1"></script>
+<script>
+  console.log("GA-Begin");
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-129789023-1');
+  console.log("GA-END")
+</script>
+
+<!-- Facebook Pixel Code -->
+<script>
+  console.log("FB-Begin");
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '1950066075061967'); 
+fbq('track', 'PageView');
+  console.log("FB-End");
+</script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=1950066075061967&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+<script>
+function register() {
+  const data = {
+    email: document.getElementById("email").value,
+    course: 'Python 入門線上自學班',
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    purpose: document.getElementById("purpose").value,
+    option: document.getElementById("r1").checked ? 1 :
+            (document.getElementById("r2").checked ? 2 : 0),
+  };
+
+  if (data.option === 0) {
+    alert("忘記選擇方案了!");
+    return;
+  }
+
+  if (data.email.trim() === "") {
+    alert("忘記填寫帳號了!");
+    return;
+  }
+
+  const regex = /\S+@\S+\.\S+/;
+  const isEmailFormat = regex.test(data.email);
+  if( isEmailFormat === false ){
+      alert("Email 格式錯誤了!");
+      return;
+  }
+
+  if (data.name.trim() === "") {
+    alert("忘記填寫姓名了!");
+    return;
+  }
+
+  if (data.phone.trim() === "") {
+    alert("忘記填寫手機號碼了!");
+    return;
+  }
+
+  if (data.purpose.trim() === "") {
+    alert("忘記選擇學程式的目的了!");
+    return;
+  }
+  sendRegister(data);
+}
+
+function sendRegister(data) {
+  fetch('https://codingbar.net/service/course/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  }).catch(error => alert("報名失敗! 請聯繫客服人員!"))
+  .then(response => {
+    document.location.href='./ok.html?name=' + encodeURIComponent(data.name) + "&option=" + data.option;
+  });
+}
+</script>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1><a href="javascript: void(0)" title="logo">CodingBar</a></h1>
+    <div class="scroll_show"><span>Python入門線上自學班</span><a id="yt_4" href="javascript: void(0)" class="yellow_btn">我要報名</a></div>
+  </div>
+</header>
+<div class="wrapper-main">
+<div class="wrapper">
+  <section class="main-section">
+    <div class="container">
+      <h2 class="text-center">Python入門<br>線上自學班</h2>
+      <div class="top_title">
+        <p class="text-center">不限時間、地點學習，<br>又享有實體課程的高互動性！</p>
+        <p class="text-center">透過最熱門的程式語言 Python，建立程式語言的五大基礎：變數/資料型態、條件控制、迴圈(for/while)、串列、函式，奠定進階學習的基礎。</p>
+        <div class="text-center"> <a id="yt_3" href="javascript: void(0)" class="yellow_btn">我要報名</a> </div>
+      </div>
+      <div class="top_icon">
+        <div class="icon_box"><span><img src="img/icon1.png" class="img icon"></span>
+          <p class="text-center">不限時間、地點，只要一台<br>能上網的電腦就能學習！</p>
+        </div>
+        <div class="icon_box"><span><img src="img/icon2.png" class="img icon"></span>
+          <p class="text-center">透過動畫影片、生活實例建立基本<br>概念，不用擔心coding像外星語</p>
+        </div>
+        <div class="icon_box"><span><img src="img/icon3.png" class="img icon"></span>
+          <p class="text-center">依個人學習狀況，安排學習進<br>度，老師即時掌握您的學習狀態</p>
+        </div>
+      </div>
+      <img src="img/top_bg.png" class="img top_bg"> <img src="img/top_bg2.png" class="img top_bg2"> <img src="img/top_bg3.png" class="img top_bg3"> </div>
+  </section>
+  <section class="features-section"> <img src="img/features_bg.png" class="img features_bg">
+    <div class="container">
+      <h3 class="title text-center">課程特色</h3>
+      <div class="features_main">
+        <div class="features_box">
+          <dl>
+            <dd>獨創 O+L 線上學習法</dd>
+            <dt>累積多年程式教學經驗，獨創 O+L 線上學習法，讓您上課不拘泥時間、地點又能和老師互動學習，再搭配不同的輔導方案，讓您享有高效率的學習，保證七週後能獨立開發完成一支有用的程式。</dt>
+          </dl>
+          <dl>
+            <dd>線上課程 (Online Course)</dd>
+            <dt>5 個單元的線上自學課程，透過動畫講解重要觀念，絕無瞬間讓人昏迷的外星語，任何不懂的地方，可以立刻發問，老師會在 24 小時內回覆您。以及超過 100 題的線上練習，系統將會自動批閱，讓您隨時都能解鎖新成就！</dt>
+          </dl>
+          <dl>
+            <dd>直播家教（Live Tutor）線上解答</dd>
+            <dt>每 2 個單元程結束後，搭配1 次線上同步練習課程。在線上同步練習時間，CodingBar老師將帶著線上學生們，一起解決進階練習題。您也可以帶著之前的問題，線上詢問老師，讓您的問題不累積，持續跟上進度。</dt>
+          </dl>
+        </div>
+        <div class="features_box">
+          <dl>
+            <dd>自學，不孤單</dd>
+            <dt>別擔心您只是自己一個人！我們知道自學容易發懶，因此跟著我們一週一堂的進度，每週都有小進步！透過獨創的 CodingBar 學習平台，老師可以立即掌握您的學習給予協助。</dt>
+          </dl>
+          <dl>
+            <dd>專業，零風險</dd>
+            <dt>一般線上課程只有一位老師照顧您的大小事情，CodingBar擁有一個團隊協助您學習，課程規劃、教材編寫、動畫教學等都是經過我們的精心規劃。第一堂課上線後五天內，若您覺得不合適，我們保證全額退費！鼓勵您學習，卻又不用承擔任何風險。</dt>
+          </dl>
+          <dl>
+            <dd>基礎，卻不止於此</dd>
+            <dt>第七單元的專題實作，您將學習如何運用Python分析大量的 Excel 資料，課程上不僅會活用前六週所學的程式基礎，更能幫助您解決日常生活或是工作上實際會碰到的問題！此次課程，為您開啟資料科學的大門，也奠定您進階學習的基礎。</dt>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <img src="img/features_bg2.png" class="img features_bg2"> </section>
+  <section class="time-section">
+    <div class="container">
+      <h3 class="title text-center">課程時間</h3>
+      <p class="text-center time_words">每單元當日 10:00 開放當週線上課程，第三與第六單元線上直播同步解題與講解的時間為當日 19:30-21:00</p>
+      <div class="date_main">
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>一月</u><i>23</i></span>
+            <p><i>第一單元</i><span>程式基礎及條件控制 (if...else)</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>一月</u><i>30</i></span>
+            <p><i>第二單元</i><span>進階條件控制及for 迴圈</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>二月</u><i>13</i></span>
+            <p><i>第三單元</i><span>線上直播同步解題與講解（19:30）</span></p>
+            <div><img src="img/Frame 71.png" class="img live"></div>
+            </a></li>
+        </ul>
+        <ul class="time_list">
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>二月</u><i>20</i></span>
+            <p><i>第四單元</i><span>while 迴圈</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>二月</u><i>27</i></span>
+            <p><i>第五單元</i><span>串列及函式</span></p>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate"><u>三月</u><i>6</i></span>
+            <p><i>第六單元</i><span>線上直播同步解題與講解（19:30）</span></p>
+            <div><img src="img/Frame 71.png" class="img live"></div>
+            </a></li>
+          <li><a href="javascript: void(0)" class="time_btn"><span class="newsDate last_date"><u>三月</u><i>13</i></span>
+            <p><i>第七單元</i><span>專題實作：Excel 檔案資料分析</span></p>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="cost-section">
+    <div class="container">
+      <h3 class="title text-center">課程方案與費用</h3>
+      <div class="class_main">
+        <div class="top_Program">
+          <div class="program_box">
+            <div class="box_content">
+              <p>基礎方案</p>
+              <h3 class="blue_font">30天輔導方案</h3>
+              <p>課程全部結束後，提供 30 天課後輔導。您可以在期限內，透過 CodingBar 平台與專業教師討論課程或練習的問題。</p>
+            </div>
+            <div class="box_content blue_bg">
+              <h4 class="bottom_font"><i>$990</i> 新年推廣優惠價，僅此一次</h4>
+              <p class="money">原價 $2,500</p>
+              <a id="yt_1" href="javascript: void(0)" class="yellow_btn">選擇此方案</a> </div>
+          </div>
+          <div class="program_box">
+            <div class="box_content">
+              <p>加強方案</p>
+              <h3 class="blue_font">90 天輔導方案</h3>
+              <p>課程全部結束後，提供 90 天課後輔導。您可以在期限內，透過 CodingBar 平台與專業教師討論課程或練習的問題。</p>
+            </div>
+            <div class="box_content blue_bg">
+              <h4 class="bottom_font"><i>$1,490</i> 新年推廣優惠，僅此一次</h4>
+              <p class="money">原價 $3,600</p>
+              <a id="yt_2" href="javascript: void(0)" class="yellow_btn">選擇此方案</a> </div>
+          </div>
+        </div>
+        
+        <div class="go_here"></div>
+      </div>
+    </div>
+  </section>
+  <section class="movie-section">
+    <div class="container ridio_main">
+      <div class="ridio_content">
+        <h3>報名課程</h3>
+        <p>請選擇課程方案，設定帳號與填寫基本資料</p>
+        <p class="radio_title">選擇課程方案</p>
+        <div class="radio_opt">
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio" id="r1" value="1">
+            <label for="r1">基礎方案：30天輔導</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio" id="r2" value="2" >
+            <label for="r2">加強方案：90天輔導</label>
+          </div>
+        </div>
+        <p class="radio_title">設定帳號</p>
+        <div class="text_input email">
+          <label for="r3">Email</label>
+          <input name="Email" id="email" type="text" autocomplete="off" maxlength="100" class="text" placeholder="請填寫電子郵件，以此為系統登入帳號" title="請填寫電子郵件，以此為系統登入帳號">
+        </div>
+        <p class="radio_title">填寫基本資料</p>
+        <div class="name">
+          <div class="name_box">
+            <label for="r4">name</label>
+            <input name="name" id="name" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫姓名，與老師和同學互動使用" title="請填寫姓名，與老師和同學互動使用">
+          </div>
+          <div class="name_box">
+            <label for="r5">phone</label>
+            <input name="phone" id="phone" type="text" autocomplete="off" maxlength="10" class="text" placeholder="請填寫手機號碼，僅供緊急通知使用" title="請填寫手機號碼，僅供緊急通知使用">
+          </div>
+        </div>
+        <div class="scroll-parent">
+          <select data-select-like-alignement="never" class="drop-select" id="purpose">
+            <option value="">請選擇學習程式的目的</option>
+            <option value="感覺是趨勢，一定要會">感覺是趨勢，一定要會</option>
+            <option value="不知道寫程式能做什麼，來試試看">不知道寫程式能做什麼，來試試看</option>
+            <option value="想應用在資料處理上">想應用在資料處理上</option>
+            <option value="想學會網路爬蟲資料，先建立基礎">想學會網路爬蟲資料，先建立基礎</option>
+            <option value="好像 AI 都會用到，來學些基礎增加知識">好像 AI 都會用到，來學些基礎增加知識</option>
+            <option value="想成為軟體工程師，先來打基礎">想成為軟體工程師，先來打基礎</option>
+            <option value="工作上需與工程師合作，來建立基礎概念">工作上需與工程師合作，來建立基礎概念</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="text-center"> <a class="submit_btn" href="javascript: register()">送出報名表</a></div>
+    </div>
+    <div class="container">
+      <div class="notice_words">
+        <ul>
+          <li class="flex_style"><span class="line">課前準備</span>
+            <ol>
+              <li>只要準備一部能透過 Chrome 瀏覽器連上網的電腦</li>
+              <li>您不需要具備有其他程式語言的基礎，但需具備國中程度的基礎英文以及數學</li>
+              <li>放輕鬆，本課程就是希望在無負擔的狀態下，讓您快速建立程式語言的概念</li>
+            </ol>
+          </li>
+          <li class="flex_style"><span class="line">繳費方式</span>
+            <p>報名成功後，系統將發送電子郵件通知您繳費方式，您可透過多元繳費機制繳費。若有任何問題，歡迎透過 LINE 搜尋 @codingbar 與我們聯絡。</p>
+          </li>
+          <li class="flex_style"><span class="line">下次開課</span>
+            <p>2/13, 2/20, 3/6, 3/13, 3/27 每週三 10:00開放當週線上課程<br>
+              2/27, 3/20 19:30~21:00 線上直播練習講解</p>
+          </li>
+          <li class="flex_style"><span class="line">注意事項</span>
+            <p>已繳費因故無法參加課程者，於第一堂課上線五日內提出申請，全額退費；之後則不退費。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <img src="img/top_bg4.png" class="img top_bg4"> <img src="img/top_bg5.png" class="img top_bg5"> </section>
+</div></div>
+<section class="movie-section gray">
+  <div class="container">
+    <h3 class="title text-center">常見問題</h3>
+    <div class="qa_main">
+      <dl>
+        <dd>Q1：學習時如果遇到問題我如何得到協助？</dd>
+        <dt>你可以透過 CodingBar 系統直接提問，老師將在 24小時內回覆你的問題。你也可以在線上家教時間直接問老師，老師將立刻為你解答。</dt>
+      </dl>
+      <dl>
+        <dd>Q2：這門課上完之後，如果想進階學習，後續有什麼進階課程?</dd>
+        <dt>Python入門班是最基礎的課程，後續根據你不同的實務需要，你可以選擇：小資族的投資策略、找資料的省時必殺技、問卷調查的資料分析...等進階應用班，甚至還有 C++、Java 等不同程式語言課程讓你學習，將陸續推出，敬請期待。</dt>
+      </dl>
+      <dl>
+        <dd>Q3：線上課程可以看幾次？</dd>
+        <dt>你可以無限多次觀看線上影片及實作練習。</dt>
+      </dl>
+      <dl>
+        <dd>Q4：為什麼課程是一週一週上，而問問題又有30天或90天的限制？</dd>
+        <dt>我們深知線上自學是很容易有惰性的，根據美國統計調查，線上課程完成率不到10% 。因此我們不希望你花了錢買了課程卻又沒學到東西，所以我們希望你照著我們進度，一週一週按步就班學習，盡快完成就可以盡快應用在生活上。</dt>
+      </dl>
+      <dl>
+        <dd>Q5：如果需要，我可以有一對一線上或實體輔導嗎？費用多少呢？</dd>
+        <dt>可以的，您可以加購一對一線上或實體輔導課。時間由你跟老師預約，線上輔導每次至少30分鐘，實體輔導每次至少60分鐘，地點在忠孝新生捷運站附近（忠孝東路三段96號3F）。Python入門班一對一輔導費用為每小時新台幣500元。你可以透過 Line@ 或 CodingBar 平台提早跟老師預約時間。</dt>
+      </dl>
+      <dl>
+        <dd>Q6：如果我對以上內容還有些問題，我該怎麼獲得協助？</dd>
+        <dt>你可以透過電話與我們聯絡：(02)7717-9386，也可以透過 LINE 搜尋：@codingbar 我們會盡快回覆你。</dt>
+      </dl>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <ul>
+      <li><img src="img/logo.png" class="img logo">
+        <p>瑞比智慧科技股份有限公司</p>
+      </li>
+      <li><span>公司地址</span>
+        <p>台北市忠孝東路三段96號3F</p>
+      </li>
+      <li><span>電子郵件</span>
+        <p>service<i>@</i>codingbar.ai</p>
+      </li>
+      <li><span>公司電話</span>
+        <p>(02)7717-9386</p>
+      </li>
+      <li><span>Line</span>
+        <p><i>@</i>codingbar</p>
+      </li>
+    </ul>
+  </div>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/tether.js"></script>
+<script src="js/select.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
